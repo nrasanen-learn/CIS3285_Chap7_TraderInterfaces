@@ -17,6 +17,11 @@ public class RestfulTradeDataProvider : ITradeDataProvider
     public IEnumerable<string> ReadTradeData()
     {
         logger.LogMessage("Reading trade data from Restful API: " + url);
+
+        using (HttpClient client = new HttpClient())
+        {
+            
+        }
         // -------------- Add your code here to fetch trade data from the URL and return it as an IEnumerable<string> --------------
         throw new NotImplementedException();
     }
