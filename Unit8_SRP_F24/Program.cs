@@ -16,7 +16,11 @@ class Program
         }
         ILogger logger = new ConsoleLogger();
         ITradeValidator tradeValidator = new SimpleTradeValidator(logger);
+        
         ITradeDataProvider tradeDataProvider = new URLTradeDataProvider("http://raw.githubusercontent.com/tgibbons-css/CIS3285_Unit9_F24/refs/heads/master/SingleResponsibilityPrinciple/trades.txt", logger);
+        ITradeDataProvider restfulTradeDataProvider = new RestfulTradeDataProvider("http://localhost:5000/api/trades", logger);
+        ITradeDataProvider streamTradeDataProvider = new StreamTradeDataProvider(tradeStream, logger);
+
         ITradeMapper tradeMapper = new SimpleTradeMapper();
         ITradeParser tradeParser = new SimpleTradeParser(tradeValidator, tradeMapper);
         ITradeStorage tradeStorage = new AdoNetTradeStorage(logger);
